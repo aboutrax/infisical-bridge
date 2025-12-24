@@ -72,8 +72,6 @@ Application runs on http://localhost:8080
 
 Use a service like ngrok.
 
----
-
 ## Infisical Webhook Configuration
 
 When creating a webhook in Infisical, the following rules must be respected.
@@ -93,16 +91,12 @@ The webhook secret **must exactly match**:
 
 Requests with an invalid or missing secret will be rejected.
 
----
-
 ## Webhooks Behavior
 
 - Incoming webhook signatures are validated
 - Secrets are fetched from Infisical
 - Dokploy is updated using its API
 - Invalid or unsigned requests are ignored
-
----
 
 ## Security Notes
 
@@ -111,15 +105,11 @@ Requests with an invalid or missing secret will be rejected.
 - HTTPS is recommended in production
 - Restrict network access to trusted sources only
 
----
-
 ## Testing
 
 ```sh
 ./gradlew test
 ```
-
----
 
 ## Tech Stack
 
@@ -127,8 +117,6 @@ Requests with an invalid or missing secret will be rejected.
 - Spring Boot
 - Gradle (Kotlin DSL)
 - Docker / Docker Compose
-
----
 
 ## License
 
