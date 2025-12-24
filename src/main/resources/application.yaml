@@ -6,3 +6,7 @@ infisical:
   api-url: ${INFISICAL_API_URL}
   client-id: ${INFISICAL_CLIENT_ID}
   client-secret: ${INFISICAL_CLIENT_SECRET}
+
+dokploy:
+  api-url: ${DOKPLOY_API_URL}
+  api-key: ${DOKPLOY_API_KEY}
