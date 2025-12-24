@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.abnov.infisicalbridge.dokploy.DokployClient;
 import com.abnov.infisicalbridge.dto.DokployComposeUpdateRequest;
-import com.abnov.infisicalbridge.dto.DokployComposeUpdateResponse;
 import com.abnov.infisicalbridge.dto.InfisicalWebhookEventResponse;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
