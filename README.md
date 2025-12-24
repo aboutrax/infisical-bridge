@@ -50,6 +50,7 @@ Dokploy
 
 ## Docker Compose
 
+```txt
 services:
   infisical-bridge:
     build: .
@@ -61,18 +62,22 @@ services:
       INFISICAL_WEBHOOK_SECRET: ${INFISICAL_WEBHOOK_SECRET}
       DOKPLOY_API_URL: ${DOKPLOY_API_URL}
       DOKPLOY_API_KEY: ${DOKPLOY_API_KEY}
-
+```
 ---
 
 ## Running
 
 With Docker Compose:
 
+```sh
 docker compose up -d --build
+```
 
 Local development:
 
+```sh
 ./gradlew bootRun
+```
 
 Application runs on http://localhost:8080
 
