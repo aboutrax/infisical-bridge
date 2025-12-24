@@ -21,4 +21,7 @@ public class InfisicalProperties {
 
     @NotBlank(message = "Infisical client secret is required")
     private String clientSecret;
+
+    @NotBlank(message = "Infisical webhook secret is required")
+    private String webhookSecret;
 }
