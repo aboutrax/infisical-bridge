@@ -2,16 +2,12 @@
 
 A Spring Boot (Java 21) application acting as a secure bridge between Infisical and Dokploy, enabling automated synchronization and deployment of secrets through APIs and webhooks.
 
----
-
 ## Features
 
 - Secure integration with Infisical
 - Automated updates via Dokploy API
 - Webhook-driven synchronization
 - Docker and Docker Compose ready
-
----
 
 ## Architecture Overview
 
@@ -21,16 +17,12 @@ Infisical–Dokploy Bridge (Spring Boot)
 ↓ (Dokploy API)  
 Dokploy  
 
----
-
 ## Requirements
 
 - Java 21
 - Docker and Docker Compose
 - Infisical account
 - Dokploy instance with API access
-
----
 
 ## Environment Variables
 
@@ -45,8 +37,6 @@ Dokploy
 
 - DOKPLOY_API_URL: Base URL of Dokploy API
 - DOKPLOY_API_KEY: Dokploy API key
-
----
 
 ## Docker Compose
 
@@ -63,7 +53,6 @@ services:
       DOKPLOY_API_URL: ${DOKPLOY_API_URL}
       DOKPLOY_API_KEY: ${DOKPLOY_API_KEY}
 ```
----
 
 ## Running
 
@@ -91,7 +80,7 @@ When creating a webhook in Infisical, the following rules must be respected.
 
 ### Webhook URL format
 
-${INFISICAL_API_URL}/webhook?dokployComposeId=${DOKPLOY_COMPOSE_ID}
+`${INFISICAL_API_URL}/webhook?dokployComposeId=${DOKPLOY_COMPOSE_ID}`
 
 - `dokployComposeId` must be the target Dokploy compose identifier
 - This value is required and used to determine which Dokploy service is updated
@@ -100,7 +89,7 @@ ${INFISICAL_API_URL}/webhook?dokployComposeId=${DOKPLOY_COMPOSE_ID}
 
 The webhook secret **must exactly match**:
 
-${INFISICAL_WEBHOOK_SECRET}
+`${INFISICAL_WEBHOOK_SECRET}`
 
 Requests with an invalid or missing secret will be rejected.
 
@@ -126,7 +115,9 @@ Requests with an invalid or missing secret will be rejected.
 
 ## Testing
 
+```sh
 ./gradlew test
+```
 
 ---
 
