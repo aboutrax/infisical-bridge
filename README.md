@@ -76,12 +76,32 @@ Use a service like ngrok.
 
 When creating a webhook in Infisical, the following rules must be respected.
 
-### Webhook URL format
+### Webhook URL Formats
+
+Infisical bridge supports two webhook URL formats, depending on the Dokploy resource you want to update.
+
+#### Dokploy Compose Webhook
 
 `${INFISICAL_API_URL}/webhook?dokployComposeId=${DOKPLOY_COMPOSE_ID}`
 
-- `dokployComposeId` must be the target Dokploy compose identifier
-- This value is required and used to determine which Dokploy service is updated
+Parameters:
+- dokployComposeId (required):
+  The identifier of the target Dokploy Compose.
+  This value is used to determine which Dokploy compose service should be updated when the webhook is triggered.
+
+#### Dokploy Application Webhook
+
+`${INFISICAL_API_URL}/webhook?dokployApplicationId=${DOKPLOY_APPLICATION_ID}`
+
+Parameters:
+- dokployApplicationId (required):
+  The identifier of the target Dokploy Application.
+  This value is used to determine which Dokploy application should be updated when the webhook is triggered.
+
+#### Notes
+- Exactly one identifier must be provided per webhook URL.
+- If no identifier or multiple identifiers are provided, the webhook request will be rejected.
+- Ensure the provided ID matches an existing Dokploy resource.
 
 ### Webhook Secret
 
