@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.abnov.infisicalbridge.dokploy.DokployClient;
+import com.abnov.infisicalbridge.dto.DokployApplicationUpdateRequest;
 import com.abnov.infisicalbridge.dto.DokployComposeUpdateRequest;
 import com.abnov.infisicalbridge.dto.InfisicalWebhookEventResponse;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -38,7 +39,8 @@ public class InfisicalWebhookController {
     @PostMapping
     public ResponseEntity<Void> handleWebhook(
             @RequestBody String payload,
-            @RequestParam String dokployComposeId,
+            @RequestParam(required = false) String dokployComposeId,
+            @RequestParam(required = false) String dokployApplicationId,
             @RequestHeader(value = "X-Infisical-Signature", required = false) String signature)
             throws InfisicalException {
 
@@ -80,12 +82,24 @@ public class InfisicalWebhookController {
                 .map(s -> s.getSecretKey() + "=" + s.getSecretValue())
                 .collect(Collectors.joining("\n"));
 
-        try {
-            dokployClient.updateCompose(
-                    new DokployComposeUpdateRequest(dokployComposeId, envContent));
-        } catch (Exception e) {
-            log.error("Failed to update Dokploy compose {}", dokployComposeId, e);
-            return ResponseEntity.status(HttpStatus.BAD_GATEWAY).build();
+        if (dokployComposeId != null) {
+            try {
+                dokployClient.updateCompose(
+                        new DokployComposeUpdateRequest(dokployComposeId, envContent));
+            } catch (Exception e) {
+                log.error("Failed to update Dokploy compose {}", dokployComposeId, e);
+                return ResponseEntity.status(HttpStatus.BAD_GATEWAY).build();
+            }
+        }
+
+        if (dokployApplicationId != null) {
+            try {
+                dokployClient.updateApplication(
+                        new DokployApplicationUpdateRequest(dokployApplicationId, envContent));
+            } catch (Exception e) {
+                log.error("Failed to update Dokploy application {}", dokployApplicationId, e);
+                return ResponseEntity.status(HttpStatus.BAD_GATEWAY).build();
+            }
         }
 
         return ResponseEntity.ok().build();
